@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analyse audio files</title>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/skeleton.css">
+    <link rel="stylesheet" href="static/css/custom.css">
+
+</head>
+<body class="code-snippets-visible">
+ <script src="https://unpkg.com/wavesurfer.js"></script>
+ <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+
+
+ <div class="container">
+    <section class="header">
+        <h1>Audio classification and labeling</h1>
+        <div>Upload audio track to analyse</div>
+        <label class="css-lbl-upload" for="fileInput">Choose file</label>
+        <section class="css-box-upload" id="dropContainer">
+            <input type="file" accept=".wav,.mp3" id="fileInput" style="display: none;">
+            <div class="css-icon-txt-upload">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 504 418.2" xml:space="preserve" class="upload-btn">
+                    <g>
+                        <path d="M388.3,110.9c-4.5,0-8.9,0.3-13.3,0.8c-16-62-72.4-106-137.4-106c-78.3,0-141.9,63.7-141.9,141.9c0,1.3,0,2.7,0.1,4h-0.4
+                            C42.8,151.5,0,194.3,0,246.8c0,52.5,42.8,95.3,95.3,95.3H181c5.4,0,9.8-4.4,9.8-9.8s-4.4-9.8-9.8-9.8l-85.7,0
+                            c-41.8,0-75.8-34-75.8-75.7c0-41.8,34-75.8,75.8-75.8h10.9c2.8,0,5.4-1.2,7.3-3.2c1.9-2.1,2.8-4.8,2.5-7.6
+                            c-0.4-4.2-0.7-8.5-0.7-12.7c0-67.5,54.9-122.4,122.4-122.4c58.8,0,109.4,41.8,120.2,99.4c0.5,2.6,2,4.8,4.2,6.3
+                            c2.2,1.5,4.9,2,7.4,1.5c6.2-1.3,12.5-1.9,18.9-1.9c53,0,96.1,43.1,96.1,96c0,27-11.5,52.9-31.6,71.1c-0.2,0.2-0.5,0.4-0.7,0.7
+                            c-13.7,15.2-34.4,24.3-55.4,24.3l-78,0c-5.4,0-9.8,4.4-9.8,9.8c0,5.4,4.4,9.8,9.8,9.8h78c26.6,0,52-11.1,69.6-30.4
+                            c23.9-21.9,37.6-53,37.6-85.3C504,162.7,452.1,110.8,388.3,110.9L388.3,110.9z"/>
+                        <path d="M366.2,249.6c3,0,6-1.4,7.9-4c3.2-4.4,2.2-10.5-2.2-13.7L257.8,149c-0.4-0.3-0.8-0.4-1.3-0.6c-0.4-0.2-0.7-0.4-1.1-0.5
+                            c-2.2-0.8-4.7-0.8-6.9,0c-0.4,0.1-0.7,0.3-1.1,0.5c-0.4,0.2-0.9,0.4-1.3,0.6l-114.2,82.9c-4.4,3.2-5.3,9.3-2.2,13.7
+                            c3.2,4.4,9.3,5.4,13.7,2.2l98.7-71.6v232.3c0,5.4,4.4,9.8,9.8,9.8c5.4,0,9.8-4.4,9.8-9.8l0-232.2l98.6,71.6
+                            C362.2,249,364.2,249.6,366.2,249.6L366.2,249.6z"/>
+                 </svg>
+                <span>Upload a audio track here</span>
+            </div>
+            <button class="css-btn-upload">Browse Files</button>
+         </section>
+        <div id="waveform" style="padding: 20px 20px;"></div>
+        <a class="button button-primary" onclick="wavesurfer.playPause();">Play</a>
+    </div>
+ </div>
+
+    <script language="javascript">
+        var wavesurfer = WaveSurfer.create({
+            progressColor: '#52d9a0',
+            container: '#waveform',
+            hideScrollbar: true,
+            normalize: true,
+            plugins: [
+                    WaveSurfer.regions.create({})
+                ]
+        });
+        
+        wavesurfer.on('ready', function () {
+            wavesurfer.play();
+            r1 = wavesurfer.addRegion({"start": 0.01, "end":0.3, "color": "rgba(255, 87, 51, 0.3)", "drag": false, "resize": false})
+            r2 = wavesurfer.addRegion({"start": 1.9, "end":3, "color": "rgba( 255, 195, 0, 0.3)", "drag": false, "resize": false})
+        });
+
+
+        wavesurfer.load('./temp/zapsplat_warfare_sword_metal_blade_slow_scrape_across_rock_or_concrete_001_63539.wav');
+
+
+    </script>
+    </body>
+    <script type="text/javascript" src="/static/myscript.js"></script>
+</html>

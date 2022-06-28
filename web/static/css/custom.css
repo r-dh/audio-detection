@@ -1,0 +1,78 @@
+.container {
+  max-width: 800px; }
+.header {
+  margin-top: 6rem;
+  text-align: center; }
+.navbar {
+  display: none; }
+
+
+
+.upload-btn {
+  vertical-align: middle;
+  overflow: hidden;
+  color: inherit;
+  fill: currentcolor;
+  display: inline-flex;
+  -moz-box-align: center;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 2.3rem;
+  width: 40px;
+  height: 40px;
+}
+
+.css-icon-txt-upload {
+  margin-right: auto;
+  -moz-box-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.css-box-upload {
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  background-color: rgb(232, 232, 232);
+  margin: 0rem 5rem 5rem 5rem;
+
+}
+
+.css-lbl-upload {
+  font-size: 14px;
+  margin-left: 5rem;
+  margin-bottom: 7px;
+  height: auto;
+  min-height: 1.5rem;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  -moz-box-align: center;
+  align-items: center;
+}
+
+.css-btn-upload {
+  display: inline-flex;
+  -moz-box-align: center;
+  align-items: center;
+  -moz-box-pack: center;
+  justify-content: center;
+  font-weight: 400;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  margin: 0px;
+  line-height: 1.6;
+  color: inherit;
+  width: auto;
+  user-select: none;
+}
+
+
+/* Larger than phone */
+@media (min-width: 550px) {
+  .header {
+    margin-top: 18rem; }
+
+}

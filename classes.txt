@@ -1,2 +1,0 @@
-sword
-ui_click

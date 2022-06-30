@@ -1,0 +1,5 @@
+[server]
+
+#baseUrlPath = 'C:\DAE'
+enableCORS = false
+enableXsrfProtection = false

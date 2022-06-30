@@ -7,6 +7,10 @@ import io
 from tensorflow.keras import layers
 from tensorflow.keras import models
 
+import streamlit.components.v1 as components
+# from comp_wavesurfer import comp_wavesurfer
+
+
 def singleton(cls):
     instances = {}
     def wrapper(*args, **kwargs):
@@ -71,10 +75,40 @@ audio_classifier = ClassifyAudio()
 uploaded_file = st.file_uploader("Choose a file", type=["wav", "mp3"])
 if uploaded_file is not None:
   file_path = "./temp/" + uploaded_file.name[:-3] + "wav" # hardcoded
-  filetype = uploaded_file.name[:3]
+  filetype = uploaded_file.name[-3:]
   st.audio(uploaded_file.getvalue(), format=f'audio/{filetype}')
   sound = AudioSegment.from_file(io.BytesIO(uploaded_file.getvalue()), format=filetype)
   sound = sound.set_channels(1)
   sound.export(file_path, format="wav")
 
   audio_classifier.analyse(str(file_path))
+
+  # comp_wavesurfer()
+
+  # components.html(
+  #   """
+    
+  #   <script src="https://unpkg.com/wavesurfer.js"></script>
+
+  #   <div id="waveform"></div>
+
+  #   <script language="javascript">
+  #       var wavesurfer = WaveSurfer.create({
+  #           container: '#waveform',
+  #           waveColor: 'violet',
+  #           backgroundColor: 'grey',
+  #           normalize: true,
+  #       });
+        
+  #       console.log("Streamlit runs JavaScript");
+        
+  #       wavesurfer.load('temp/zapsplat_warfare_sword_metal_blade_slow_scrape_across_rock_or_concrete_001_63539.wav');
+        
+  #       wavesurfer.on('ready', function () {
+  #           wavesurfer.play();
+  #       });
+       
+  #       console.log("JavaScript done");
+  #   </script>
+  #   """
+  #   )

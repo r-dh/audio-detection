@@ -1,0 +1,66 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+    <!-- Set up your HTML here -->
+    <div id="waveform"></div>
+
+    <script>
+      // ----------------------------------------------------
+      // Just copy/paste these functions as-is:
+
+      function sendMessageToStreamlitClient(type, data) {
+        var outData = Object.assign({
+          isStreamlitMessage: true,
+          type: type,
+        }, data);
+        window.parent.postMessage(outData, "*");
+      }
+
+      function init() {
+        sendMessageToStreamlitClient("streamlit:componentReady", {apiVersion: 1});
+      }
+
+      function setFrameHeight(height) {
+        sendMessageToStreamlitClient("streamlit:setFrameHeight", {height: height});
+      }
+
+      // The `data` argument can be any JSON-serializable value.
+      function sendDataToPython(data) {
+        sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+      }
+
+      // ----------------------------------------------------
+      // Now modify this part of the code to fit your needs:
+
+      var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'violet',
+            backgroundColor: 'grey',
+            normalize: true,
+        });
+        
+      // console.log("Streamlit runs JavaScript");
+      
+      wavesurfer.load('temp/zapsplat_warfare_sword_metal_blade_slow_scrape_across_rock_or_concrete_001_63539.wav');
+      
+      wavesurfer.on('ready', function () {
+          wavesurfer.play();
+      });
+     
+      init();
+      // console.log("JavaScript done");
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function() {
+        window.setTimeout(function() {
+          setFrameHeight(document.documentElement.clientHeight)
+        }, 0);
+      });
+
+      // Optionally, if the automatic height computation fails you, give this component a height manually
+      // by commenting out below:
+      //setFrameHeight(200);
+    </script>
+  </body>
+</html>
